@@ -7,8 +7,8 @@ import javafx.event.*;
 
 public class AddSubtractLambda extends Application {
 	
-	Button btnAdd;
-	Button btnSub;
+	Button btnAdd, btnSub;
+	Button btnContinue, btnClose;
 	Label lbl;
 	int counter = 0;
 
@@ -36,8 +36,23 @@ public class AddSubtractLambda extends Application {
 		HBox pane = new HBox(10);
 		pane.getChildren().addAll(lbl, btnAdd, btnSub);
 		
+		// Create Continue button
+		btnContinue = new Button("Continue");
+		
+		// Create Close button
+		btnClose = new Button("Close");
+		
+		// Add side buttons to vertical pane
+		VBox sidePanel = new VBox();
+		sidePanel.getChildren().addAll(btnContinue,btnClose);
+		
+		// Add vertical pane to BorderLayout pane
+		BorderPane primaryPanel = new BorderPane();
+		primaryPanel.setCenter(pane);
+		primaryPanel.setRight(sidePanel);
+		
 		// Add layout pane to scene
-		Scene scene = new Scene(pane, 200, 75);
+		Scene scene = new Scene(primaryPanel, 300, 300);
 		
 		// Add scene to the stage, set the title, and show stage
 		primaryStage.setScene(scene);
