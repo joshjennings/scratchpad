@@ -11,6 +11,9 @@ public class AddSubtractLambda extends Application {
 	Button btnContinue, btnClose;
 	Label lbl;
 	int counter = 0;
+	
+	Label accountChecking, accountSavings;
+	TextField moneyChecking; //text input field for money
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
