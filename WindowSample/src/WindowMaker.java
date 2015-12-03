@@ -1,20 +1,14 @@
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TitledPane;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import static java.lang.System.*;
 
 /**
- * Created by manufacturing9 on 12/2/2015.
+ * Created by Josh on 12/2/2015.
  */
 public class WindowMaker extends Application {
 
@@ -22,6 +16,16 @@ public class WindowMaker extends Application {
 
     @Override public void start(Stage primaryStage) {
         out.println("Window creation beginning.");
+
+        //create person textfield
+	    TextField salesPerson = new TextField();
+	    salesPerson.setEditable(true);
+	    salesPerson.setMaxWidth(400);
+	    salesPerson.setMinWidth(100);
+	    salesPerson.setPrefWidth(200);
+	    salesPerson.setPromptText("Sales Engineer");
+
+	    //TODO: add main pane controls
 
         //create control buttons and horizontal spacer
         Button buttonOK = new Button("OK");
@@ -42,17 +46,33 @@ public class WindowMaker extends Application {
         TitledPane dropdownBox = new TitledPane("Numbers",selectionBox);
         dropdownBox.setCollapsible(true);
 
+	    //create top pane
+	    HBox topPane = new HBox(10,spacer,salesPerson);
+	    topPane.setPadding(new Insets(10));
+	    HBox.setHgrow(spacer, Priority.ALWAYS);
+
+	    //create center pane
+	    //TODO: add main pane for primary data
+
         //create bottom pane
         HBox bottomPane = new HBox(10,dropdownBox,spacer,buttonOK,buttonCancel);
         bottomPane.setPadding(new Insets(10));
-        bottomPane.setHgrow(spacer, Priority.ALWAYS);
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+	    //create BorderPane (root)
+	    BorderPane rootPane = new BorderPane();
+	    rootPane.setTop(topPane);
+	    //TODO:rootPane.setCenter(primaryPane);
+	    rootPane.setBottom(bottomPane);
 
         //create scene
-        Scene scene = new Scene(bottomPane);
+        Scene scene = new Scene(rootPane);
 
         //create stage
         primaryStage.setScene(scene);
         primaryStage.setTitle("Window Tester");
+	    out.println("Showing window");
         primaryStage.show();
+	    out.println("Window displayed");
     }
 }
